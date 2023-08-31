@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
-// const multer = require('multer')
+
 dotenv.config();
 
 try {
@@ -18,10 +18,10 @@ try {
 } catch (error) {
   handleError(error);
 }
+app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-// app.use(multer());
 app.use("/v1/auth", authRoute);
 app.use("/v1/user", userRoute);
 
