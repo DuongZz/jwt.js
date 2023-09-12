@@ -7,6 +7,7 @@ const authController = {
 
   registerUser: async (req, res) => {
     try {
+      
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.password, salt);
 
@@ -32,7 +33,7 @@ const authController = {
   generateAccessToken: (user) => {
     return jwt.sign({
       id: user.id,
-      admin: user.admin
+      manager: user.manager
     },
       process.env.JWT_ACCESS_KEY,
       { expiresIn: "30s" }
@@ -42,7 +43,7 @@ const authController = {
   generateRefreshToken: (user) => {
     return jwt.sign({
       id: user.id,
-      isAdmin: user.isAdmin,
+      isManager: user.isManager,
     },
       process.env.JWT_REFRESH_KEY,
       { expiresIn: "365d" }

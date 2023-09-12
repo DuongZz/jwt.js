@@ -21,7 +21,6 @@ try {
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use(express.json());
 app.use("/v1/auth", authRoute);
 app.use("/v1/user", userRoute);
 
